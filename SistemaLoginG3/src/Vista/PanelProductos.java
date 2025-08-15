@@ -36,16 +36,14 @@ public class PanelProductos extends javax.swing.JPanel {
         TxtIDProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         TxtNombreProducto = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         TxtPrecioProducto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        TxtCostoProducto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         TxtDescripcionProducto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(0, 204, 0));
+        setBackground(new java.awt.Color(204, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/AgregarUsuario.png"))); // NOI18N
@@ -106,18 +104,14 @@ public class PanelProductos extends javax.swing.JPanel {
             }
         });
         add(TxtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, -1));
-
-        jLabel3.setText("Costo");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
         add(TxtPrecioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, -1));
 
         jLabel4.setText("Precio");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
-        add(TxtCostoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 180, -1));
 
         jLabel5.setText("Descripción");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
-        add(TxtDescripcionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 80));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        add(TxtDescripcionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 180, 80));
 
         tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,7 +159,6 @@ public class PanelProductos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField TxtCostoProducto;
     public javax.swing.JTextField TxtDescripcionProducto;
     public javax.swing.JTextField TxtIDProducto;
     public javax.swing.JTextField TxtNombreProducto;
@@ -178,7 +171,6 @@ public class PanelProductos extends javax.swing.JPanel {
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
