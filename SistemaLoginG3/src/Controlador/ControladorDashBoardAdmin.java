@@ -11,17 +11,17 @@ import Vista.DashBoardAdmin;
  * @author LuisE
  */
 public class ControladorDashBoardAdmin {
+
     //Atributos
     private DashBoardAdmin vista;
     private usuario modelo;
-    
-    //Controlador
 
+    //Controlador
     public ControladorDashBoardAdmin() {
         //Crear el objeto vista
-        this.vista=new DashBoardAdmin();
+        this.vista = new DashBoardAdmin();
         manejadorEventos();
-        
+
     }
     //Metodo set y get
 
@@ -32,52 +32,65 @@ public class ControladorDashBoardAdmin {
     public void setVista(DashBoardAdmin vista) {
         this.vista = vista;
     }
-    
-    
+
     //Metodo manejador de eventos 
-    public void manejadorEventos(){
+    public void manejadorEventos() {
         //Agregar evento al oton btnUsuarios
-        this.vista.btnUsuarios.addActionListener(e->mostrarPanelUsuarios());
-        
-        this.vista.btnRolUsuarios.addActionListener(e->mostrarPanelRolUsuarios());
-        
+        this.vista.btnUsuarios.addActionListener(e -> mostrarPanelUsuarios());
+
+        this.vista.btnRolUsuarios.addActionListener(e -> mostrarPanelRolUsuarios());
+
+        // Agregar evento al boton btnProductos
+        this.vista.btnProductos.addActionListener(e -> mostrarPanelPuntodVenta());
     }
-    
-    public void mostrarPanelRolUsuarios(){
-        ControladorPanelRolUsuarios controladorPanelRolUsuarios=new ControladorPanelRolUsuarios();
-        
-        controladorPanelRolUsuarios.getVista().setSize(800,560);
+
+    public void mostrarPanelRolUsuarios() {
+        ControladorPanelRolUsuarios controladorPanelRolUsuarios = new ControladorPanelRolUsuarios();
+
+        controladorPanelRolUsuarios.getVista().setSize(800, 560);
         controladorPanelRolUsuarios.getVista().setLocation(0, 0);
-        
+
         this.vista.panelContenido.removeAll();
         this.vista.panelContenido.add(controladorPanelRolUsuarios.getVista());
         this.vista.panelContenido.revalidate();
         this.vista.panelContenido.repaint();
-        
+
     }
-    
-    
+
     //Metodo para mostrar el panel de usuarios
-    public void mostrarPanelUsuarios(){
+    public void mostrarPanelUsuarios() {
         //Crear el objeto del controlador panel usuario
-        ControladorPanelUsuarios controladorPanelUsuarios=new ControladorPanelUsuarios();
-        
-        controladorPanelUsuarios.getVista().setSize(800,560);
+        ControladorPanelUsuarios controladorPanelUsuarios = new ControladorPanelUsuarios();
+
+        controladorPanelUsuarios.getVista().setSize(800, 560);
         controladorPanelUsuarios.getVista().setLocation(0, 0);
-        
+
         //Agregar eel panelUsuarios al panelControl
         this.vista.panelContenido.removeAll();
         this.vista.panelContenido.add(controladorPanelUsuarios.getVista());
         this.vista.panelContenido.revalidate();
         this.vista.panelContenido.repaint();
     }
-     
+
+    // Metodo para mostrar el panel de productos
+    public void mostrarPanelPuntodVenta() {
+        // Crear el objeto del controlador panel productos
+        ControladorPuntodVenta controladorPuntoDVenta = new ControladorPuntodVenta();
+
+        controladorPuntoDVenta.getVista().setSize(800, 560);
+        controladorPuntoDVenta.getVista().setLocation(0, 0);
+        
+        // Agregar el panelProductos al panelControl
+        this.vista.panelContenido.removeAll();
+        this.vista.panelContenido.add(controladorPuntoDVenta.getVista());
+        this.vista.panelContenido.revalidate();
+        this.vista.panelContenido.repaint();
+    }
+
     //Metodo main
-    public static void main(String[] args){
-        ControladorDashBoardAdmin controlador=new ControladorDashBoardAdmin();
+    public static void main(String[] args) {
+        ControladorDashBoardAdmin controlador = new ControladorDashBoardAdmin();
         controlador.vista.setVisible(true);
         controlador.vista.setLocationRelativeTo(null);
     }
-    
-    
 }

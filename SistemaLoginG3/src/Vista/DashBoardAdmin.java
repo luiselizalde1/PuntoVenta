@@ -32,6 +32,7 @@ public class DashBoardAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnUsuarios = new javax.swing.JButton();
+        btnProductos = new javax.swing.JButton();
         btnRolUsuarios = new javax.swing.JButton();
         panelEncabezado = new javax.swing.JPanel();
         panelContenido = new javax.swing.JPanel();
@@ -65,6 +66,15 @@ public class DashBoardAdmin extends javax.swing.JFrame {
             }
         });
         panelMenu.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 190, 40));
+
+        btnProductos.setBackground(new java.awt.Color(51, 255, 0));
+        btnProductos.setText("Productos");
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
+        panelMenu.add(btnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 190, 40));
 
         btnRolUsuarios.setBackground(new java.awt.Color(51, 255, 0));
         btnRolUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Sking.png"))); // NOI18N
@@ -121,6 +131,10 @@ public class DashBoardAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductosActionPerformed
+
     private void btnRolUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRolUsuariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRolUsuariosActionPerformed
@@ -151,6 +165,7 @@ public class DashBoardAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnProductos;
     public javax.swing.JButton btnRolUsuarios;
     public javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel jLabel1;

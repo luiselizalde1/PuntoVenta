@@ -32,7 +32,7 @@ public class PuntodVenta extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btnCobroExacto = new javax.swing.JButton();
@@ -62,8 +62,8 @@ public class PuntodVenta extends javax.swing.JPanel {
 
         jPasswordField1.setText("jPasswordField1");
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), null));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), null));
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,8 +74,8 @@ public class PuntodVenta extends javax.swing.JPanel {
                 "Nombre", "Cantidad", "Precio", "Total"
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
-        jScrollPane1.setViewportView(jTable1);
+        tblProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
+        jScrollPane1.setViewportView(tblProductos);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -271,9 +271,9 @@ public class PuntodVenta extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private java.awt.Label label1;
+    public javax.swing.JTable tblProductos;
     // End of variables declaration//GEN-END:variables
 }
