@@ -231,7 +231,7 @@ public class PuntodVenta extends javax.swing.JPanel {
                 .addGap(151, 151, 151))
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 780, 500));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 780, 500));
 
         label1.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 36)); // NOI18N
         label1.setForeground(new java.awt.Color(255, 255, 255));
