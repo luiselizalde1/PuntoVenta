@@ -33,15 +33,15 @@ public class PanelProductos extends javax.swing.JPanel {
         btnNuevo = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        TxtIDProducto = new javax.swing.JTextField();
+        txtIdProducto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        TxtNombreProducto = new javax.swing.JTextField();
-        TxtPrecioProducto = new javax.swing.JTextField();
+        txtNombreProducto = new javax.swing.JTextField();
+        txtPrecioProducto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        TxtDescripcionProducto = new javax.swing.JTextField();
+        txtDescripcionProducto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaUsuario = new javax.swing.JTable();
+        tblProductos = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -88,32 +88,32 @@ public class PanelProductos extends javax.swing.JPanel {
         jLabel1.setText("ID Producto");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        TxtIDProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtIdProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtIDProductoActionPerformed(evt);
+                txtIdProductoActionPerformed(evt);
             }
         });
-        add(TxtIDProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, -1));
+        add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, -1));
 
         jLabel2.setText("Nombre");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
-        TxtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtNombreProductoActionPerformed(evt);
+                txtNombreProductoActionPerformed(evt);
             }
         });
-        add(TxtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, -1));
-        add(TxtPrecioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, -1));
+        add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, -1));
+        add(txtPrecioProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, -1));
 
         jLabel4.setText("Precio");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jLabel5.setText("Descripción");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-        add(TxtDescripcionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 180, 80));
+        add(txtDescripcionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 180, 80));
 
-        tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -132,14 +132,14 @@ public class PanelProductos extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaUsuario);
+        jScrollPane1.setViewportView(tblProductos);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 570, 460));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtIDProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtIDProductoActionPerformed
+    private void txtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtIDProductoActionPerformed
+    }//GEN-LAST:event_txtIdProductoActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
@@ -149,9 +149,9 @@ public class PanelProductos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void TxtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombreProductoActionPerformed
+    private void txtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtNombreProductoActionPerformed
+    }//GEN-LAST:event_txtNombreProductoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
@@ -159,10 +159,6 @@ public class PanelProductos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField TxtDescripcionProducto;
-    public javax.swing.JTextField TxtIDProducto;
-    public javax.swing.JTextField TxtNombreProducto;
-    public javax.swing.JTextField TxtPrecioProducto;
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnEditar;
     public javax.swing.JButton btnEliminar;
@@ -174,7 +170,11 @@ public class PanelProductos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tablaUsuario;
+    public javax.swing.JTable tblProductos;
+    public javax.swing.JTextField txtDescripcionProducto;
+    public javax.swing.JTextField txtIdProducto;
+    public javax.swing.JTextField txtNombreProducto;
+    public javax.swing.JTextField txtPrecioProducto;
     // End of variables declaration//GEN-END:variables
 
 }

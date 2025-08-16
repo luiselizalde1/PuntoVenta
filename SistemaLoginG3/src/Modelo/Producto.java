@@ -71,15 +71,24 @@ public class Producto extends ConexionBD implements CRUDProducto {
     @Override
     public boolean insertar() {
         if (super.openConexcionBD()) {
-            System.out.println("se Conecto correctamente a la base de datos");
-            return true;
-            /* try {
-                // Llamar al procedimiento almacenado
-                this.cstmt = (CallableStatement) super.getConexion().prepareCall("call bd_sistema_login");
-                this.cstmt.setString(1, this.idProducto);
+            try {
+                // Llamar el procedimiento almacenado
+                this.cstmt = (CallableStatement) super.getConexion().prepareCall("call bd_sistema_login.sp_insertar_producto(?, ?, ?);");
+                this.cstmt.setString(1, this.nombreProducto);
+                this.cstmt.setString(2, this.descripcionProducto);
+                this.cstmt.setFloat(3, this.precioProducto);
+                // Ejecutar el procedimiento almacenado
+                this.cstmt.execute();
+                // Cerrar la conexion
+                this.cstmt.close();
+                super.getConexion().close();
+                super.setMensajes("Se guardaron correctamente los datos del producto");
+                return true;
             } catch (SQLException e) {
                 super.setMensajes("Error de SQL: " + e.getMessage());
-            } */
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "No se pudo conectar al servidor de BD: " + super.getMensajes());
         }
 
         return false;
@@ -123,12 +132,61 @@ public class Producto extends ConexionBD implements CRUDProducto {
 
     @Override
     public boolean buscarPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (super.openConexcionBD()) {
+            try {
+                // Llamar el procedimiento almacenado
+                this.cstmt = (CallableStatement) super.getConexion().prepareCall("call bd_sistema_login.sp_buscar_idproducto(?);");
+                this.cstmt.setInt(1, this.idProducto);
+                // Ejecutar el procedimiento almacenado
+                this.resultado = this.cstmt.executeQuery();
+                // Recorrer la consulta
+                while (this.resultado.next()) {
+                    // Agregar los datos de la consulta a los atributos del producto
+                    this.idProducto = this.resultado.getInt(1);
+                    this.nombreProducto = this.resultado.getString(2);
+                    this.descripcionProducto = this.resultado.getString(3);
+                    this.precioProducto = Float.parseFloat(this.resultado.getString(4));
+                }
+                // Cerrar la conexion
+                this.cstmt.close();
+                super.getConexion().close();
+                super.setMensajes("Se consultaron correctamente los datos del producto");
+                return true;
+            } catch (SQLException e) {
+                super.setMensajes("Error de SQL: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "No se pudo conectar al servidor de BD: " + super.getMensajes());
+        }
+
+        return false;
     }
 
     @Override
     public boolean modificar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (super.openConexcionBD()) {
+            try {
+                // Llamar el procedimiento almacenado
+                this.cstmt = (CallableStatement) super.getConexion().prepareCall("call bd_sistema_login.sp_actualizar_producto(?, ?, ?, ?);");
+                this.cstmt.setInt(1, this.idProducto);
+                this.cstmt.setString(2, this.nombreProducto);
+                this.cstmt.setString(3, this.descripcionProducto);
+                this.cstmt.setFloat(4, this.precioProducto);
+                // Ejecutar el procedimiento almacenado
+                this.cstmt.execute();
+                // Cerrar la conexion
+                this.cstmt.close();
+                super.getConexion().close();
+                super.setMensajes("Se actualizaron correctamente los datos del producto");
+                return true;
+            } catch (SQLException e) {
+                super.setMensajes("Error de SQL: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "No se pudo conectar al servidor de BD: " + super.getMensajes());
+        }
+
+        return false;
     }
 
     @Override

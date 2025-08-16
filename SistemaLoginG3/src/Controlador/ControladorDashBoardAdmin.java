@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 
 import Vista.DashBoardAdmin;
 
-/**
- *
- * @author LuisE
- */
 public class ControladorDashBoardAdmin {
 
     //Atributos
@@ -41,7 +33,7 @@ public class ControladorDashBoardAdmin {
         this.vista.btnRolUsuarios.addActionListener(e -> mostrarPanelRolUsuarios());
 
         // Agregar evento al boton btnProductos
-        this.vista.btnProductos.addActionListener(e -> mostrarPanelPuntodVenta());
+        this.vista.btnProductos.addActionListener(e -> mostrarPanelProductos());
     }
 
     public void mostrarPanelRolUsuarios() {
@@ -73,16 +65,16 @@ public class ControladorDashBoardAdmin {
     }
 
     // Metodo para mostrar el panel de productos
-    public void mostrarPanelPuntodVenta() {
+    public void mostrarPanelProductos() {
         // Crear el objeto del controlador panel productos
-        ControladorPuntodVenta controladorPuntoDVenta = new ControladorPuntodVenta();
+        ControladorPanelProductos controladorpanelproductos = new ControladorPanelProductos();
 
-        controladorPuntoDVenta.getVista().setSize(800, 560);
-        controladorPuntoDVenta.getVista().setLocation(0, 0);
-        
+        controladorpanelproductos.getVista().setSize(800, 560);
+        controladorpanelproductos.getVista().setLocation(0, 0);
+
         // Agregar el panelProductos al panelControl
         this.vista.panelContenido.removeAll();
-        this.vista.panelContenido.add(controladorPuntoDVenta.getVista());
+        this.vista.panelContenido.add(controladorpanelproductos.getVista());
         this.vista.panelContenido.revalidate();
         this.vista.panelContenido.repaint();
     }
