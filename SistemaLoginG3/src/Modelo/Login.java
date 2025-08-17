@@ -4,13 +4,18 @@
  */
 package Modelo;
 
+import com.mysql.cj.jdbc.CallableStatement;
+import com.mysql.cj.xdevapi.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LuisE
  */
-public class Login {
+public class Login extends ConexionBD {
     //Atributos
     private int idLogin;
     private String nombreLogin;
@@ -20,6 +25,9 @@ public class Login {
     
     private Usuario usuario;
     private RolUsuario rolUsuario;
+    
+    CallableStatement cstmt;
+    ResultSet result;
     
     //Constructor
 
@@ -97,21 +105,71 @@ public class Login {
         this.rolUsuario = rolUsuario;
     }
     
-    //Metodo para validar el inicio de sesion
+    //Metodo para  validar el inicio de sesion 
     public boolean validarLogin(){
-        String usuarioLogin="Luis";
-        String passwordUsuario="mikecrack.1";
-        String tipoUsuario="admin";
         
-        if ((this.usuario.getNombreUsuario().equals(usuarioLogin))
-                &&(this.contraseniaLogin.equals(passwordUsuario))
-                &&(this.rolUsuario.getNombreRolUsuario().equals(tipoUsuario))){
-            return true;
-        } else {
-            return false;
+        if (super.openConexcionBD()){
             
+            try{
+                //Llamar al procedimiento de almacenado
+                this.cstmt=(CallableStatement) super.getConexion().prepareCall("call bd_sistema_login.sp_validar_login(?,?);");
+                this.cstmt.setString(1,this.getUsuario().getNombreUsuario());
+                this.cstmt.setString(2,this.getContraseniaLogin());
+                
+                //Ejecutar el procedimiento alamcenado y agregar los datos de result
+                this.result = this.cstmt.executeQuery();
+                
+                boolean existeUsuario=false;
+                
+                //Recorrer la consulta
+                while (this.result.next()){
+                    
+                    existeUsuario=true;
+                    
+                    //Agregar los datos de la consulta a los atributods del usuario
+                    this.getRolUsuario().setNombreRolUsuario(this.result.getString("NombreRolUsuario"));
+                    
+                }
+                
+                //Cerrar sesion
+                this.cstmt.close();
+                super.getConexion().close();
+                
+                if (existeUsuario) {
+                    super.setMensajes("Si existe el usuario");
+                    return true;
+                    
+                    } else {
+                    super.setMensajes("No existe el usuario");
+                    return false;
+                   
+                }
+                
+            }catch (SQLException e){
+                super.setMensajes("Error de SQL" + e.getMessage());
+            }
+            
+        }else {
+            JOptionPane.showMessageDialog(null, super.getDriverBD());
         }
+        return false;
     }
+    
+    //Metodo para validar el inicio de sesion
+    //public boolean validarLogin(){
+       // String usuarioLogin="Luis";
+       // String passwordUsuario="mikecrack.1";
+       // String tipoUsuario="admin";
+        
+       // if ((this.usuario.getNombreUsuario().equals(usuarioLogin))
+               /// &&(this.contraseniaLogin.equals(passwordUsuario))
+               // &&(this.rolUsuario.getNombreRolUsuario().equals(tipoUsuario))){
+           // return true;
+     //   } else {
+        //    return false;
+            
+       // }
+  //  }
     
     //Metodo String
 

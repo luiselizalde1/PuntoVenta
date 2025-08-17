@@ -38,14 +38,14 @@ public class ControladorVistaLogin {
         //Obtener los datos de las cajas de texto de la vista
         String user=this.vista.TxtUsuario.getText();
         String pass=String.valueOf(this.vista.TxtPassword.getPassword());
-        String typeUser="admin";
+        //String typeUser="admin";
         
         //Agregar los datos al modelo
         this.modelo.getUsuario().setNombreUsuario(user);
         this.modelo.setContraseniaLogin(pass);
-        this.modelo.getRolUsuario().setNombreRolUsuario(typeUser);
+        //this.modelo.getRolUsuario().setNombreRolUsuario(typeUser);
         
-        if (this.modelo.validarLogin()){
+        if (this.modelo.validarLogin()&& this.modelo.getRolUsuario().getNombreRolUsuario().equals("admin")){
             //JOptionPane.showMessageDialog(this.vista, "Usuario y/o Password Correcto");
             //Crear ojeto de bahBoardAdmin
             ControladorDashBoardAdmin dashBoardAdmin=new ControladorDashBoardAdmin();
@@ -54,7 +54,17 @@ public class ControladorVistaLogin {
             
             //Ocultar la vista de login
             this.vista.dispose();
-        } else {
+            
+            
+        } else if(this.modelo.validarLogin()&& this.modelo.getRolUsuario().getNombreRolUsuario().equals("cajero")){
+            ControladorDashBoardAdmin dashBoardAdmin=new ControladorDashBoardAdmin();
+            dashBoardAdmin.getVista().setVisible(true);
+            dashBoardAdmin.getVista().setLocationRelativeTo(null);
+            
+            this.vista.dispose();
+        }
+        
+        {
             JOptionPane.showMessageDialog(this.vista, "Usuario y/o Password InCorrect");
         }
     }
