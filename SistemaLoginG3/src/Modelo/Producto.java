@@ -191,6 +191,24 @@ public class Producto extends ConexionBD implements CRUDProducto {
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        if (super.openConexcionBD()) {
+            try {
+                // Llamar el procedimiento almacenado
+                this.cstmt = (CallableStatement) super.getConexion().prepareCall("call bd_sistema_login.sp_eliminar_producto(?);");
+                this.cstmt.setInt(1, this.idProducto);
+                // Ejecutar el procedimiento almacenado
+                this.cstmt.execute();
+                // Cerrar la conexion
+                this.cstmt.close();
+                super.getConexion().close();
+                super.setMensajes("Se elimaron correctamente los datos del producto");
+                return true;
+            } catch (SQLException e) {
+                super.setMensajes("Error de SQL: " + e.getMessage());
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "No se pudo conectar al servidor de BD: " + super.getMensajes());
+        }
+
+        return false;    }
 }
