@@ -49,6 +49,7 @@ public class ControladorPanelProductos {
         // Agregar evento al boton de editar
         this.vista.btnEditar.addActionListener(e -> modificarDatosProducto());
         // Agregar evento al boton de eliminar
+        this.vista.btnEliminar.addActionListener(e -> eliminarProducto());
         // Agregar evento al boton de nuevo
         this.vista.btnNuevo.addActionListener(e -> nuevoProducto());
         // Agregar evento al boton de salir
