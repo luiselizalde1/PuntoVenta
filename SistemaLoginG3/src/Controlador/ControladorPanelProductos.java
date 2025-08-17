@@ -132,6 +132,16 @@ public class ControladorPanelProductos {
 
     // Metodo para eliminar un producto
     public void eliminarProducto() {
+        // Obtener el ID del producto de la vista
+        this.modelo.setIdProducto(Integer.parseInt(this.vista.txtIdProducto.getText()));
+        // Mandar a llamar el metodo eliminar del modelo
+        if (this.modelo.eliminar(this.modelo.getIdProducto())) {
+            JOptionPane.showMessageDialog(this.vista, this.modelo.getMensajes());
+            // Llamar al metodo llenarTablaProductos para que muestre los productos
+            llenarTablaProductos();
+        } else {
+            JOptionPane.showMessageDialog(this.vista, this.modelo.getMensajes());
+        }
     }
     
     public void nuevoProducto() {
