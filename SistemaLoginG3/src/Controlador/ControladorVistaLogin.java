@@ -44,7 +44,7 @@ public class ControladorVistaLogin {
         this.modelo.getUsuario().setNombreUsuario(user);
         this.modelo.setContraseniaLogin(pass);
         //this.modelo.getRolUsuario().setNombreRolUsuario(typeUser);
-        
+
         boolean loginCorrecto = this.modelo.validarLogin();
 
         if (this.modelo.validarLogin() && this.modelo.getRolUsuario().getNombreRolUsuario().equals("admin")) {
@@ -52,35 +52,15 @@ public class ControladorVistaLogin {
             dashBoardAdmin.getVista().setVisible(true);
             dashBoardAdmin.getVista().setLocationRelativeTo(null);
             this.vista.dispose();
-<<<<<<< HEAD
-            
-            
-        } else if(this.modelo.validarLogin()&& this.modelo.getRolUsuario().getNombreRolUsuario().equals("cajero")){
-            ControladorDashBoardPuntoVenta dashBoardAdmin=new ControladorDashBoardPuntoVenta();
-=======
-
         } else if (this.modelo.validarLogin() && this.modelo.getRolUsuario().getNombreRolUsuario().equals("cajero")) {
             ControladorDashBoardAdmin dashBoardAdmin = new ControladorDashBoardAdmin();
->>>>>>> abd52f920458e34af88a3748bfb301bc4282fa02
             dashBoardAdmin.getVista().setVisible(true);
             dashBoardAdmin.getVista().setLocationRelativeTo(null);
             this.vista.dispose();
-
-            this.vista.dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(this.vista, "Usuario y/o Password Incorrecto");
         }
-<<<<<<< HEAD
     }
-    
+
     //Metodo rincipal main
-=======
-            
-        } 
-        
-        //Metodo rincipal main
->>>>>>> abd52f920458e34af88a3748bfb301bc4282fa02
     public static void main(String[] args) {
         ControladorVistaLogin controlador = new ControladorVistaLogin();
         controlador.vista.setVisible(true);
