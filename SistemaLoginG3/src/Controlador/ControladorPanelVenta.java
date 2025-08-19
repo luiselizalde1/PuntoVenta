@@ -3,8 +3,17 @@ package Controlador;
 import Modelo.DetalleVenta;
 import Modelo.Venta;
 import Vista.PanelVenta;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class ControladorPanelVenta {
 
@@ -49,6 +58,7 @@ public class ControladorPanelVenta {
         this.vista.btnAdd.addActionListener(e -> registrarNuevaVenta());
         this.vista.btnEliminar.addActionListener(e -> eliminarDetalleVenta());
         this.vista.btnModificar.addActionListener(e -> modificarDetalleVenta());
+        this.vista.btnEnd.addActionListener(e -> imprimirTicket());
     }
 
     private void registrarNuevaVenta() {
@@ -149,5 +159,92 @@ public class ControladorPanelVenta {
         }
 
         return model;
+    }
+
+    public void imprimirTicket() {
+        try {
+            // Ruta de salida (carpeta del proyecto)
+            String ruta = "ticket_venta_" + modeloVenta.getIdVenta() + ".pdf";
+
+            // Configurar el trabajo de impresión
+            PrinterJob job = PrinterJob.getPrinterJob();
+            job.setJobName("Ticket de Venta");
+
+            job.setPrintable(new Printable() {
+                @Override
+                public int print(Graphics g, PageFormat pf, int pageIndex) throws PrinterException {
+                    if (pageIndex > 0) {
+                        return NO_SUCH_PAGE;
+                    }
+
+                    Graphics2D g2d = (Graphics2D) g;
+                    g2d.translate(pf.getImageableX(), pf.getImageableY());
+
+                    int y = 20;
+
+                    // Encabezado
+                    g2d.setFont(new Font("Arial", Font.BOLD, 14));
+                    g2d.drawString("TICKET DE VENTA", 100, y);
+                    y += 20;
+                    g2d.setFont(new Font("Arial", Font.PLAIN, 12));
+                    g2d.drawString("Venta ID: " + modeloVenta.getIdVenta(), 20, y);
+                    y += 20;
+
+                    // Tabla
+                    TableModel tableModel = vista.tblDetallesVenta.getModel();
+
+                    // Dibujar encabezados
+                    int x = 20;
+                    for (int i = 0; i < tableModel.getColumnCount(); i++) {
+                        g2d.drawString(tableModel.getColumnName(i), x, y);
+                        x += 100;
+                    }
+                    y += 15;
+
+                    double totalSubtotales = 0.0;
+
+                    // Dibujar filas
+                    for (int row = 0; row < tableModel.getRowCount(); row++) {
+                        x = 20;
+                        for (int col = 0; col < tableModel.getColumnCount(); col++) {
+                            Object value = tableModel.getValueAt(row, col);
+                            g2d.drawString(value != null ? value.toString() : "", x, y);
+                            x += 100;
+                        }
+
+                        Object subtotalObj = tableModel.getValueAt(row, tableModel.getColumnCount() - 1);
+                        if (subtotalObj != null) {
+                            totalSubtotales += Double.parseDouble(subtotalObj.toString());
+                        }
+
+                        y += 15;
+                    }
+
+                    // Calcular IVA y Total
+                    double iva = totalSubtotales * 0.16;
+                    double totalVenta = totalSubtotales + iva;
+
+                    y += 20;
+                    g2d.drawString("Subtotal: $" + String.format("%.2f", totalSubtotales), 20, y);
+                    y += 15;
+                    g2d.drawString("IVA (16%): $" + String.format("%.2f", iva), 20, y);
+                    y += 15;
+                    g2d.setFont(new Font("Arial", Font.BOLD, 12));
+                    g2d.drawString("TOTAL: $" + String.format("%.2f", totalVenta), 20, y);
+
+                    return PAGE_EXISTS;
+                }
+            });
+
+            // Guardar en archivo PDF (usando impresora PDF de Java)
+            File file = new File(ruta);
+            javax.print.attribute.HashPrintRequestAttributeSet attr = new javax.print.attribute.HashPrintRequestAttributeSet();
+            job.print(attr);
+
+            JOptionPane.showMessageDialog(vista, "Ticket generado en: " + ruta);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(vista, "Error al generar PDF: " + e.getMessage());
+        }
     }
 }

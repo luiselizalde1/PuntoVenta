@@ -35,8 +35,7 @@ public class PanelVenta extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnFinalizar = new javax.swing.JButton();
-        btnImprimir = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnModificar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -91,19 +90,10 @@ public class PanelVenta extends javax.swing.JPanel {
         btnEliminar.setText("Eliminar");
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, -1, 40));
 
-        btnFinalizar.setBackground(new java.awt.Color(0, 102, 204));
-        btnFinalizar.setText("Finalizar");
-        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinalizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 210, 40));
-
-        btnImprimir.setBackground(new java.awt.Color(0, 102, 204));
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/printer_102274.png"))); // NOI18N
-        btnImprimir.setText("Imprimir");
-        jPanel1.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 210, 40));
+        btnEnd.setBackground(new java.awt.Color(0, 102, 204));
+        btnEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/printer_102274.png"))); // NOI18N
+        btnEnd.setText("Finalizar y Imprimir");
+        jPanel1.add(btnEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 210, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel3.setText("Productos");
@@ -134,10 +124,6 @@ public class PanelVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFinalizarActionPerformed
-
     private void txtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdProductoActionPerformed
@@ -158,8 +144,7 @@ public class PanelVenta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAdd;
     public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnFinalizar;
-    public javax.swing.JButton btnImprimir;
+    public javax.swing.JButton btnEnd;
     public javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

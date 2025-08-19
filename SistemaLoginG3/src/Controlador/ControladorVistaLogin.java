@@ -57,15 +57,11 @@ public class ControladorVistaLogin {
             
             
         } else if(this.modelo.validarLogin()&& this.modelo.getRolUsuario().getNombreRolUsuario().equals("cajero")){
-            ControladorDashBoardAdmin dashBoardAdmin=new ControladorDashBoardAdmin();
+            ControladorDashBoardPuntoVenta dashBoardAdmin=new ControladorDashBoardPuntoVenta();
             dashBoardAdmin.getVista().setVisible(true);
             dashBoardAdmin.getVista().setLocationRelativeTo(null);
             
             this.vista.dispose();
-        }
-        
-        {
-            JOptionPane.showMessageDialog(this.vista, "Usuario y/o Password InCorrect");
         }
     }
     
