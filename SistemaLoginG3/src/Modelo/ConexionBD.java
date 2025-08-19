@@ -27,7 +27,7 @@ public class ConexionBD {
     public ConexionBD() {
         this.driverBD="com.mysql.cj.jdbc.Driver";
         this.usuarioBD="root";
-        this.passwordUsuarioBD="12345678";
+        this.passwordUsuarioBD="computadora.5";
         this.nombreBD="jdbc:mysql://localhost:3306/bd_sistema_login";
     }
 
