@@ -210,5 +210,6 @@ public class Producto extends ConexionBD implements CRUDProducto {
             JOptionPane.showConfirmDialog(null, "No se pudo conectar al servidor de BD: " + super.getMensajes());
         }
 
-        return false;    }
+        return false;
+    }
 }

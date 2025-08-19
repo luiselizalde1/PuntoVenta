@@ -1,24 +1,26 @@
 package Controlador;
 
 import Modelo.DetalleVenta;
+import Modelo.Venta;
 import Vista.PanelVenta;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorPanelVenta {
 
-    // Atributos
-    PanelVenta vista;
-    DetalleVenta modelo;
+    private PanelVenta vista;
+    private Venta modeloVenta;
+    private DetalleVenta modeloDetalleVenta;
 
-    // Constructor
     public ControladorPanelVenta() {
-        // Crear objetos vista y modelo
         this.vista = new PanelVenta();
-        this.modelo = new DetalleVenta();
-        // Llamar al metodo manejador de eventos
+        this.modeloVenta = new Venta();
+        this.modeloDetalleVenta = new DetalleVenta();
+
+        llenarTablaProductos();
         manejadorEventos();
     }
 
-    // Metodos getters y setters
     public PanelVenta getVista() {
         return vista;
     }
@@ -27,33 +29,125 @@ public class ControladorPanelVenta {
         this.vista = vista;
     }
 
-    public DetalleVenta getModelo() {
-        return modelo;
+    public Venta getModeloVenta() {
+        return modeloVenta;
     }
 
-    public void setModelo(DetalleVenta modelo) {
-        this.modelo = modelo;
+    public void setModeloVenta(Venta modeloVenta) {
+        this.modeloVenta = modeloVenta;
     }
 
-    // Metodos
-    // Metodo para manejar eventos
-    public void manejadorEventos() {
-        /* // Agregar evento al boton de registrar
-        this.vista.btnRegistrar.addActionListener(e -> registrarNuevoProducto());
-        // Agregar evento al boton de buscar
-        this.vista.btnBuscar.addActionListener(e -> buscarProductoPorID());
-        // Agregar evento al boton de editar
-        this.vista.btnEditar.addActionListener(e -> modificarDatosProducto());
-        // Agregar evento al boton de eliminar
-        this.vista.btnEliminar.addActionListener(e -> eliminarProducto());
-        // Agregar evento al boton de nuevo
-        this.vista.btnNuevo.addActionListener(e -> nuevoProducto());
-        // Agregar evento al boton de salir
-        this.vista.btnSalir.addActionListener(e -> salir()); */
+    public DetalleVenta getModeloDetalleVenta() {
+        return modeloDetalleVenta;
     }
-    
-    // Metodo para registrar un nuevo detalle en la venta
-    public void registrarNuevoDetalle() {
-        // Obtener los datos del detalle de la vista y agregarlos al modelo
+
+    public void setModeloDetalleVenta(DetalleVenta modeloDetalleVenta) {
+        this.modeloDetalleVenta = modeloDetalleVenta;
+    }
+
+    private void manejadorEventos() {
+        this.vista.btnAdd.addActionListener(e -> registrarNuevaVenta());
+        this.vista.btnEliminar.addActionListener(e -> eliminarDetalleVenta());
+        this.vista.btnModificar.addActionListener(e -> modificarDetalleVenta());
+    }
+
+    private void registrarNuevaVenta() {
+        try {
+            int idProducto = Integer.parseInt(this.vista.txtIdProducto.getText());
+            int cantidad = Integer.parseInt(this.vista.txtCantidadDetalleVenta.getText());
+
+            if (!modeloDetalleVenta.existeProducto(idProducto)) {
+                JOptionPane.showMessageDialog(vista, "El producto con ID " + idProducto + " no existe.");
+                return;
+            }
+
+            if (modeloVenta.getIdVenta() == 0) {
+                // Crear nueva venta
+                if (modeloVenta.insertar()) {
+                    JOptionPane.showMessageDialog(vista, "Venta creada con ID: " + modeloVenta.getIdVenta());
+                } else {
+                    JOptionPane.showMessageDialog(vista, "Error al crear la venta: " + modeloVenta.getMensajes());
+                    return;
+                }
+            }
+
+            modeloDetalleVenta.setIdProducto(idProducto);
+            modeloDetalleVenta.setCantidadDetalleVenta(cantidad);
+
+            if (modeloDetalleVenta.insertar(modeloVenta.getIdVenta())) {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+            } else {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+            }
+
+            llenarTablaProductos();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(vista, "Ingresa valores numéricos válidos.");
+        }
+    }
+
+    private void modificarDetalleVenta() {
+        try {
+            int idDetalle = Integer.parseInt(this.vista.txtIdDetalleVenta.getText());
+            int idProducto = Integer.parseInt(this.vista.txtIdProducto.getText());
+            int cantidad = Integer.parseInt(this.vista.txtCantidadDetalleVenta.getText());
+
+            modeloDetalleVenta.setIdDetalleVenta(idDetalle);
+            modeloDetalleVenta.setIdProducto(idProducto);
+            modeloDetalleVenta.setCantidadDetalleVenta(cantidad);
+
+            if (modeloDetalleVenta.modificar(idDetalle)) {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+                llenarTablaProductos();
+            } else {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(vista, "Ingresa valores numéricos válidos.");
+        }
+    }
+
+    private void eliminarDetalleVenta() {
+        try {
+            int idDetalle = Integer.parseInt(this.vista.txtIdDetalleVenta.getText());
+            modeloDetalleVenta.setIdDetalleVenta(idDetalle);
+
+            if (modeloDetalleVenta.eliminar(idDetalle)) {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+                llenarTablaProductos();
+            } else {
+                JOptionPane.showMessageDialog(vista, modeloDetalleVenta.getMensajes());
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(vista, "Ingresa un ID válido para eliminar.");
+        }
+    }
+
+    private void llenarTablaProductos() {
+        this.vista.tblDetallesVenta.setModel(obtenerModeloTabla());
+    }
+
+    private DefaultTableModel obtenerModeloTabla() {
+        String[] encabezado = {"ID", "ID Producto", "Nombre Producto", "Costo Unitario", "Cantidad", "Subtotal"};
+        DefaultTableModel model = new DefaultTableModel(encabezado, 0);
+
+        if (modeloVenta.getIdVenta() != 0) {
+            for (DetalleVenta detalle : modeloDetalleVenta.buscarPorIdVenta(modeloVenta.getIdVenta())) {
+                Object[] fila = {
+                    detalle.getIdDetalleVenta(),
+                    detalle.getIdProducto(),
+                    detalle.getNombreProducto(),
+                    detalle.getPrecioProducto(),
+                    detalle.getCantidadDetalleVenta(),
+                    detalle.getSubtotal()
+                };
+                model.addRow(fila);
+            }
+        }
+
+        return model;
     }
 }

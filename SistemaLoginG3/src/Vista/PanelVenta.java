@@ -28,22 +28,24 @@ public class PanelVenta extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tblDetallesVenta = new javax.swing.JTable();
+        txtIdProducto = new javax.swing.JTextField();
+        txtCantidadDetalleVenta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtIdDetalleVenta = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(217, 235, 247));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetallesVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -54,67 +56,77 @@ public class PanelVenta extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDetallesVenta);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 420, 370));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtIdProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtIdProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 210, -1));
+        jPanel1.add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 210, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidadDetalleVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtCantidadDetalleVentaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 210, -1));
+        jPanel1.add(txtCantidadDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 210, -1));
 
-        jLabel1.setText("Id Proucto");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
+        jLabel1.setText("Id DetalleVenta");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
 
         jLabel2.setText("Cantidad");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, -1));
 
-        jButton1.setText("Añadir ");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 80, 40));
-
-        jButton2.setText("Modificar ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Añadir");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 90, 40));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 80, 40));
 
-        jButton3.setText("Eliminar");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, -1, 40));
+        btnEliminar.setText("Eliminar");
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, -1, 40));
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 204));
-        jButton4.setText("Finalizar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizar.setBackground(new java.awt.Color(0, 102, 204));
+        btnFinalizar.setText("Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnFinalizarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 210, 40));
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 210, 40));
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/printer_102274.png"))); // NOI18N
-        jButton5.setText("Imprimir");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 210, 40));
+        btnImprimir.setBackground(new java.awt.Color(0, 102, 204));
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/printer_102274.png"))); // NOI18N
+        btnImprimir.setText("Imprimir");
+        jPanel1.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 210, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel3.setText("Productos");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
+        btnModificar.setText("Modificar");
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 80, 40));
+
+        jLabel4.setText("Id Proucto");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, -1, -1));
+
+        txtIdDetalleVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdDetalleVentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtIdDetalleVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 210, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,36 +134,42 @@ public class PanelVenta extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void txtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_txtIdProductoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCantidadDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadDetalleVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCantidadDetalleVentaActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtIdDetalleVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdDetalleVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdDetalleVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
-    public javax.swing.JButton jButton5;
+    public javax.swing.JButton btnAdd;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnFinalizar;
+    public javax.swing.JButton btnImprimir;
+    public javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTable tblDetallesVenta;
+    public javax.swing.JTextField txtCantidadDetalleVenta;
+    public javax.swing.JTextField txtIdDetalleVenta;
+    public javax.swing.JTextField txtIdProducto;
     // End of variables declaration//GEN-END:variables
 }

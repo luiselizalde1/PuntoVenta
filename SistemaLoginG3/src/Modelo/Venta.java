@@ -1,28 +1,28 @@
 package Modelo;
 
-import com.mysql.cj.jdbc.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Venta extends ConexionBD implements CRUDVenta {
 
-    // Atributos
     private int idVenta;
-    private int fechaVenta;
+    private Date fechaVenta;
 
-    CallableStatement cstmt;
-    ResultSet resultado;
-
-    // Constructor
+    // Constructor vacío
     public Venta() {
     }
 
-    public Venta(int idVenta, int fechaVenta) {
+    // Constructor completo
+    public Venta(int idVenta, Date fechaVenta) {
         this.idVenta = idVenta;
         this.fechaVenta = fechaVenta;
     }
 
-    // Metodos getters y setters
+    // Getters y setters
     public int getIdVenta() {
         return idVenta;
     }
@@ -31,59 +31,71 @@ public class Venta extends ConexionBD implements CRUDVenta {
         this.idVenta = idVenta;
     }
 
-    public int getFechaVenta() {
+    public Date getFechaVenta() {
         return fechaVenta;
     }
 
-    public void setFechaVenta(int fechaVenta) {
+    public void setFechaVenta(Date fechaVenta) {
         this.fechaVenta = fechaVenta;
     }
 
-    public CallableStatement getCstmt() {
-        return cstmt;
-    }
-
-    public void setCstmt(CallableStatement cstmt) {
-        this.cstmt = cstmt;
-    }
-
-    public ResultSet getResultado() {
-        return resultado;
-    }
-
-    public void setResultado(ResultSet resultado) {
-        this.resultado = resultado;
-    }
-
-    // Metodo toString
     @Override
     public String toString() {
-        return "Venta{" + "idVenta=" + idVenta + ", fechaVenta=" + fechaVenta + ", cstmt=" + cstmt + ", resultado=" + resultado + '}';
+        return "Venta{" + "idVenta=" + idVenta + ", fechaVenta=" + fechaVenta + '}';
     }
 
-    // Metodos
+    // INSERTAR venta y recuperar ID generado
     @Override
     public boolean insertar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (super.openConexcionBD()) {
+            try {
+                java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
+
+                PreparedStatement ps = super.getConexion()
+                        .prepareStatement("CALL bd_sistema_login.sp_insertar_venta(?)");
+
+                ps.setDate(1, fechaActual);
+
+// Ejecutar y obtener el ResultSet del SELECT dentro del SP
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    this.idVenta = rs.getInt("idVenta"); // Recuperar el ID devuelto por el SP
+                }
+
+                rs.close();
+                ps.close();
+
+                super.setMensajes("Se guardaron correctamente los datos de la venta con ID " + this.idVenta);
+
+                return true;
+
+            } catch (SQLException e) {
+                super.setMensajes("Error de SQL: " + e.getMessage());
+            }
+        } else {
+            super.setMensajes("No se pudo conectar al servidor de BD: " + super.getMensajes());
+            JOptionPane.showMessageDialog(null, super.getMensajes());
+        }
+        return false;
     }
 
     @Override
     public ArrayList buscar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return null;
     }
 
     @Override
     public boolean buscarPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return false;
     }
 
     @Override
     public boolean modificar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return false;
     }
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return false;
     }
 }
